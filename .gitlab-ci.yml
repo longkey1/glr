@@ -20,9 +20,9 @@ build:
     - gox -os="${GOX_OS}" -arch="${GOX_ARCH}" -output="${GOX_DIST_DIR}/{{.Dir}}_{{.OS}}_{{.Arch}}" ./...
     - |
       pushd ${GOX_DIST_DIR}; \
-      for TARGET in $(find ${CI_PROJECT_DIR}/${GOX_DIST_DIR} -mindepth 1 -maxdepth 1 -type f); do \
+      for TARGET in $(find . -mindepth 1 -maxdepth 1 -type f); do \
         ARCHIVE_NAME="$(basename ${TARGET})"; \
-        zip -r ${CI_PROJECT_DIR}/${GLR_DIST_DIR}/${ARCHIVE_NAME}.zip ./${ARCHIVE_NAME}; \
+        zip -r ${GOPATH}/src/${CI_PROJECT_NAME}/${GLR_DIST_DIR}/${ARCHIVE_NAME}.zip ./${ARCHIVE_NAME}; \
       done; \
       popd
     - glr -t ${GL_PRIVATE_TOKEN} ${CI_PROJECT_PATH} v$(./glr --version | cut -d " " -f 3) ${GLR_DIST_DIR}

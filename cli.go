@@ -62,8 +62,8 @@ func (c *CLI) Run(args []string) int {
 			files = append(files, fmt.Sprintf("- %s", res.Markdown))
 		}
 
-		msg := fmt.Sprintf("%s Release", t)
-		desc := fmt.Sprintf("Downlodas\n---\n%s", strings.Join(files, "\n"))
+		msg := fmt.Sprintf("Release %s", t)
+		desc := fmt.Sprintf("# Downlodas\n%s", strings.Join(files, "\n"))
 		tag, err = createTag(ctx, p, t, r, msg, desc)
 		if err != nil {
 			return err
