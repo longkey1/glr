@@ -24,6 +24,7 @@ type CLI struct {
 func (c *CLI) Run(args []string) int {
 	app := cli.NewApp()
 	app.Name = "glr"
+	app.Version = "0.0.1"
 	app.Usage = "gitlab releaser"
 	app.Action = func(ctx *cli.Context) error {
 		if ctx.NArg() < 3 {
@@ -39,11 +40,17 @@ func (c *CLI) Run(args []string) int {
 			return err
 		}
 
-		if tag != nil {
+		isForce := ctx.Bool("force")
+		if tag != nil && isForce {
 			err = deleteTag(ctx, p, t)
 			if err != nil {
 				return err
 			}
+			tag = nil
+		}
+		if tag != nil {
+			fmt.Fprintf(c.outStream, "%s %s already released.\n", p, t)
+			return nil
 		}
 
 		files := []string{}
@@ -62,7 +69,7 @@ func (c *CLI) Run(args []string) int {
 			return err
 		}
 
-		fmt.Fprintf(c.outStream, "%s %s Released.\n", p, t)
+		fmt.Fprintf(c.outStream, "%s %s released.\n", p, t)
 
 		return nil
 	}
@@ -70,6 +77,10 @@ func (c *CLI) Run(args []string) int {
 		cli.StringFlag{
 			Name:  "token, t",
 			Usage: "access token",
+		},
+		cli.BoolFlag{
+			Name:  "force, f",
+			Usage: "delete if it exists and release",
 		},
 	}
 
