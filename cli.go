@@ -63,7 +63,7 @@ func (c *CLI) Run(args []string) int {
 		}
 
 		msg := fmt.Sprintf("%s Release", t)
-		desc := strings.Join(files, "\n")
+		desc := fmt.Sprintf("Downlodas\n---\n%s", strings.Join(files, "\n"))
 		tag, err = createTag(ctx, p, t, r, msg, desc)
 		if err != nil {
 			return err
