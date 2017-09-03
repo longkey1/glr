@@ -1,4 +1,4 @@
-image: golang
+image: longkey1/gitlab-go
 
 stages:
   - build
@@ -7,8 +7,11 @@ stages:
 build:
   stage: build
   script:
+    - cp -a ${CI_PROJECT_DIR} ${GOPATH}/src
+    - cd ${GOPATH}/src/${CI_PROJECT_NAME}
     - go get -u github.com/golang/dep/cmd/dep
     - dep ensure
+    - go build
   only:
     - master
 
@@ -20,12 +23,10 @@ release:
     GOX_DIST_DIR: "_dist-gox"
     GLR_DIST_DIR: "_dist-glr"
   script:
-    - apt-get update && apt-get -y install zip
-    - go get -u github.com/mitchellh/gox
-    - go get -u gitlab.com/longkey1/glr
+    - cd ${CI_PROJECT_DIR}
     - mkdir -p ${CI_PROJECT_DIR}/${GOX_DIST_DIR}
-    - gox -os="${GOX_OS}" -arch="${GOX_ARCH}" -output="${CI_PROJECT_DIR}/${GOX_DIST_DIR}/{{.Dir}}_{{.OS}}_{{.Arch}}" ./...
     - mkdir -p ${CI_PROJECT_DIR}/${GLR_DIST_DIR}
+    - gox -os="${GOX_OS}" -arch="${GOX_ARCH}" -output="${CI_PROJECT_DIR}/${GOX_DIST_DIR}/{{.Dir}}_{{.OS}}_{{.Arch}}" ./...
     - |
       pushd ${GOX_DIST_DIR}; \
       for TARGET in $(find ${CI_PROJECT_DIR}/${GOX_DIST_DIR} -mindepth 1 -maxdepth 1 -type f); do \
@@ -33,7 +34,6 @@ release:
         zip -r ${CI_PROJECT_DIR}/${GLR_DIST_DIR}/${ARCHIVE_NAME}.zip ./${ARCHIVE_NAME}; \
       done; \
       popd
-    - go build
-    - glr -t ${GL_PRIVATE_TOKEN} ${CI_PROJECT_PATH} v$(./glr --version | cut -d " " -f 3) ${CI_PROJECT_DIR}/${GLR_DIST_DIR}
+    - glr -t ${GL_PRIVATE_TOKEN} ${CI_PROJECT_PATH} v$(${GOPATH}/src/${CI_PROJECT_NAME}/glr --version | cut -d " " -f 3) ${CI_PROJECT_DIR}/${GLR_DIST_DIR}
   only:
     - master
