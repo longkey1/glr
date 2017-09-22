@@ -6,8 +6,8 @@ import (
 
 	"github.com/urfave/cli"
 
-	gitlab "github.com/longkey1/go-gitlab"
 	"github.com/pkg/errors"
+	gitlab "github.com/xanzy/go-gitlab"
 )
 
 func multiUploads(ctx *cli.Context, p string, dir string) ([]*gitlab.ProjectFile, error) {

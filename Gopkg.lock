@@ -8,12 +8,6 @@
   revision = "53e6ce116135b80d037921a7fdd5138cf32d7a8a"
 
 [[projects]]
-  name = "github.com/longkey1/go-gitlab"
-  packages = ["."]
-  revision = "39ce5fd6d4ceac9855fb129ae05bf9b3268295d4"
-  version = "v0.6.1"
-
-[[projects]]
   name = "github.com/pkg/errors"
   packages = ["."]
   revision = "645ef00459ed84a119197bfb8d8205042c6df63d"
@@ -25,9 +19,15 @@
   revision = "cfb38830724cc34fedffe9a2a29fb54fa9169cd1"
   version = "v1.20.0"
 
+[[projects]]
+  name = "github.com/xanzy/go-gitlab"
+  packages = ["."]
+  revision = "39ce5fd6d4ceac9855fb129ae05bf9b3268295d4"
+  version = "v0.6.1"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "22a2fbc25a2b405708fe673800774c6cb5248a97234e9b41607e58f32089b0c2"
+  inputs-digest = "6e8591535c9be0c0d5ff22a2a8f5f765804132066b8daca5b30858c5b97dda8e"
   solver-name = "gps-cdcl"
   solver-version = 1
