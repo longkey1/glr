@@ -24,7 +24,7 @@ type CLI struct {
 func (c *CLI) Run(args []string) int {
 	app := cli.NewApp()
 	app.Name = "glr"
-	app.Version = "0.0.1"
+	app.Version = "0.1.0"
 	app.Usage = "gitlab releaser"
 	app.Action = func(ctx *cli.Context) error {
 		if ctx.NArg() < 3 {
