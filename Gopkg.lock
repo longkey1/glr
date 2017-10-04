@@ -22,12 +22,12 @@
 [[projects]]
   name = "github.com/xanzy/go-gitlab"
   packages = ["."]
-  revision = "39ce5fd6d4ceac9855fb129ae05bf9b3268295d4"
-  version = "v0.6.1"
+  revision = "c35b3f712f72376e21b645514ec3635e63fe0cd2"
+  version = "v0.6.2"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "6e8591535c9be0c0d5ff22a2a8f5f765804132066b8daca5b30858c5b97dda8e"
+  inputs-digest = "5e914cd90f40d8d2505b2c8d8888b5a7020f3e17dd714b5c885d1a7d7cd0256f"
   solver-name = "gps-cdcl"
   solver-version = 1
