@@ -1,6 +1,6 @@
 # glr
 
-Upload multiple artifacts to Gitlab Tag Release Description.
+Upload multiple artifacts to gitlab tag release description.
 
 ## Usage
 
@@ -17,10 +17,10 @@ glr \
 
 ## Install
 ```
-go get -u gitlab.com/longkey1/glr.git
+go get -u github.com/longkey1/glr.git
 
 ```
 
 ## Author
 
-[longkey1](hrrps://longkey1.net)
+[longkey1](hrrps://www.longkey1.net)
